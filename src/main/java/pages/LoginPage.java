@@ -31,18 +31,23 @@ public class LoginPage {
     public String getURL(String env){
         configReader = new ConfigReader();
         prop = configReader.init_prop();
-        if (env.equalsIgnoreCase("training")) {
-            return (prop.getProperty("trainingURL"));
-        } else if (env.equalsIgnoreCase("Staging")) {
-            return (prop.getProperty("stagingURL"));
-        } else if (env.equalsIgnoreCase("Production")) {
-            return (prop.getProperty("prodURL"));
-        } else if (env.equalsIgnoreCase("Original")) {
-            return (prop.getProperty("originalURL"));
-        } else if(env.equalsIgnoreCase("Sandbox sub URL")){
-            return (prop.getProperty("SubURL"));
-        }
 
+        if(prop.getProperty("runOn").equalsIgnoreCase("jenkins")){
+            return (System.getProperty("environment"));
+        }
+        else if(prop.getProperty("runOn").equalsIgnoreCase("local")) {
+            if (env.equalsIgnoreCase("training")) {
+                return (prop.getProperty("trainingURL"));
+            } else if (env.equalsIgnoreCase("Staging")) {
+                return (prop.getProperty("stagingURL"));
+            } else if (env.equalsIgnoreCase("Production")) {
+                return (prop.getProperty("prodURL"));
+            } else if (env.equalsIgnoreCase("Original")) {
+                return (prop.getProperty("originalURL"));
+            } else if (env.equalsIgnoreCase("Sandbox sub URL")) {
+                return (prop.getProperty("SubURL"));
+            }
+        }
         return "Enter proper Environment";
     }
     public void enterUserName(String userGroup) {
@@ -50,18 +55,23 @@ public class LoginPage {
         configReader = new ConfigReader();
         prop = configReader.init_prop();
 
-        if (userGroup.equalsIgnoreCase("user1")) {
-            driver.findElement(emailId).sendKeys(prop.getProperty("username1"));
-        } else if (userGroup.equalsIgnoreCase("Power")) {
-            driver.findElement(emailId).sendKeys(prop.getProperty("powerUser"));
-        } else if (userGroup.equalsIgnoreCase("Standard")) {
-            driver.findElement(emailId).sendKeys(prop.getProperty("standardUser"));
-        } else if (userGroup.equalsIgnoreCase("CPS")) {
-            driver.findElement(emailId).sendKeys(prop.getProperty("CPSUser"));
-        } else if (userGroup.equalsIgnoreCase("Custom")) {
-            driver.findElement(emailId).sendKeys(prop.getProperty("customUser"));
-        } else if (userGroup.equalsIgnoreCase("Wrong")) {
-            driver.findElement(emailId).sendKeys(prop.getProperty("WrongUser"));
+        if(prop.getProperty("runOn").equalsIgnoreCase("jenkins")){
+            driver.findElement(emailId).sendKeys(System.getProperty("username"));
+        }
+        else if(prop.getProperty("runOn").equalsIgnoreCase("local")) {
+            if (userGroup.equalsIgnoreCase("user1")) {
+                driver.findElement(emailId).sendKeys(prop.getProperty("username1"));
+            } else if (userGroup.equalsIgnoreCase("Power")) {
+                driver.findElement(emailId).sendKeys(prop.getProperty("powerUser"));
+            } else if (userGroup.equalsIgnoreCase("Standard")) {
+                driver.findElement(emailId).sendKeys(prop.getProperty("standardUser"));
+            } else if (userGroup.equalsIgnoreCase("CPS")) {
+                driver.findElement(emailId).sendKeys(prop.getProperty("CPSUser"));
+            } else if (userGroup.equalsIgnoreCase("Custom")) {
+                driver.findElement(emailId).sendKeys(prop.getProperty("customUser"));
+            } else if (userGroup.equalsIgnoreCase("Wrong")) {
+                driver.findElement(emailId).sendKeys(prop.getProperty("WrongUser"));
+            }
         }
     }
 
@@ -70,18 +80,23 @@ public class LoginPage {
         configReader = new ConfigReader();
         prop = configReader.init_prop();
 
-        if (userGroup.equalsIgnoreCase("user1")) {
-            driver.findElement(passWord).sendKeys(prop.getProperty("user1Pswd"));
-        } else if (userGroup.equalsIgnoreCase("Power")) {
-            driver.findElement(passWord).sendKeys(prop.getProperty("password"));
-        } else if (userGroup.equalsIgnoreCase("Standard")) {
-            driver.findElement(passWord).sendKeys(prop.getProperty("password"));
-        } else if (userGroup.equalsIgnoreCase("CPS")) {
-            driver.findElement(passWord).sendKeys(prop.getProperty("password"));
-        } else if (userGroup.equalsIgnoreCase("Custom")){
-            driver.findElement(passWord).sendKeys(prop.getProperty("custompassword"));
-        }else if (userGroup.equalsIgnoreCase("Wrong")) {
-            driver.findElement(passWord).sendKeys(prop.getProperty("WrongPassword"));
+        if(prop.getProperty("runOn").equalsIgnoreCase("jenkins")){
+            driver.findElement(emailId).sendKeys(System.getProperty("password"));
+        }
+        else if(prop.getProperty("runOn").equalsIgnoreCase("local")) {
+            if (userGroup.equalsIgnoreCase("user1")) {
+                driver.findElement(passWord).sendKeys(prop.getProperty("user1Pswd"));
+            } else if (userGroup.equalsIgnoreCase("Power")) {
+                driver.findElement(passWord).sendKeys(prop.getProperty("password"));
+            } else if (userGroup.equalsIgnoreCase("Standard")) {
+                driver.findElement(passWord).sendKeys(prop.getProperty("password"));
+            } else if (userGroup.equalsIgnoreCase("CPS")) {
+                driver.findElement(passWord).sendKeys(prop.getProperty("password"));
+            } else if (userGroup.equalsIgnoreCase("Custom")) {
+                driver.findElement(passWord).sendKeys(prop.getProperty("custompassword"));
+            } else if (userGroup.equalsIgnoreCase("Wrong")) {
+                driver.findElement(passWord).sendKeys(prop.getProperty("WrongPassword"));
+            }
         }
     }
 

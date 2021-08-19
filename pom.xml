@@ -136,11 +136,23 @@
     <artifactId>maven-surefire-plugin</artifactId>
     <version>2.22.0</version>
      <configuration>
-     <!-- Suite testng xml file to consider for test execution -->
+<!--         <systemPropertyVariables>-->
+<!--             &lt;!&ndash;suppress UnresolvedMavenProperty &ndash;&gt;-->
+<!--             <environment>${Denvironment}</environment>-->
+<!--             <username>${Dusername}</username>-->
+<!--             <password>${Dpassword}</password>-->
+
+<!--         </systemPropertyVariables>-->
+<!--      Suite testng xml file to consider for test execution-->
       <suiteXmlFiles>
       <suiteXmlFile>src/test/resources/xml files/googlerunner.xml</suiteXmlFile>
-      
       </suiteXmlFiles>
+<!--         &lt;!&ndash; Suite testng xml file to consider for test execution taking from Jenkins&ndash;&gt;-->
+<!--         <suiteXmlFiles>-->
+<!--             &lt;!&ndash;suppress UnresolvedMavenProperty &ndash;&gt;-->
+<!--             <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>-->
+<!--         </suiteXmlFiles>-->
+
               
     <properties>
         <property>

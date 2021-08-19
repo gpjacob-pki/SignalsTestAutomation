@@ -4,7 +4,6 @@
   <test name="testCucumber" >
     <classes>
        <class name="com.signals.testrunnerandfeaturefile.Runner" />
-        <class name="com.signals.testrunnerandfeaturefile.Runner" />
     </classes>
   </test>
 </suite>
