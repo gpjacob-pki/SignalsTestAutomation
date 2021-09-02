@@ -2,9 +2,13 @@ package com.signals.stepDefeniiton;
 
 import com.driver.DriverFactory;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import pages.LoginPage;
+
+import java.io.IOException;
 
 public class LoginTest {
 
@@ -40,4 +44,9 @@ public class LoginTest {
     }
 
 
+    @And("User enters the username and password from email")
+    public void userEntersTheUsernameAndPasswordFromEmail() throws IOException, InvalidFormatException {
+
+        loginPage.usernameAndPswdFromEmail();
+    }
 }

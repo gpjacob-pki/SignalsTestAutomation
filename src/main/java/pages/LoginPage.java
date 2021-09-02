@@ -1,11 +1,17 @@
 package pages;
 
+
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import utils.ConfigReader;
+import utils.ExcelReader;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 
@@ -99,6 +105,26 @@ public class LoginPage {
             }
         }
     }
+
+    public void usernameAndPswdFromEmail() throws IOException, InvalidFormatException {
+
+        int rowNumber=1;
+        ExcelReader reader = new ExcelReader();
+        List<Map<String,String>> testData =
+                reader.getData("./src/test/java/config/testdata.xlsx", "users");
+
+        String user = testData.get(rowNumber).get("Username");
+        String password = testData.get(rowNumber).get("Password");
+
+
+        System.out.println("username is "+user);
+        System.out.println("password is "+password);
+
+        driver.findElement(emailId).sendKeys(user);
+        driver.findElement(passWord).sendKeys(password);
+
+    }
+
 
     public void clickOnLogin() throws InterruptedException {
 
