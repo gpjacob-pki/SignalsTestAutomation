@@ -33,7 +33,6 @@
 </dependency>
 
     
-    
     <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
 <dependency>
     <groupId>io.cucumber</groupId>
@@ -96,13 +95,13 @@
 </dependency>
 
     
-    <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
-<dependency>
+<!--    &lt;!&ndash; https://mvnrepository.com/artifact/io.cucumber/cucumber-junit &ndash;&gt;
+<dependency> cx hnb
     <groupId>io.cucumber</groupId>
     <artifactId>cucumber-junit</artifactId>
     <version>6.9.1</version>
     
-</dependency>
+</dependency>-->
     
     
     <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-core -->

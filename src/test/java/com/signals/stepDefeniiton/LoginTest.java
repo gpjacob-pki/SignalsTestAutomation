@@ -49,4 +49,6 @@ public class LoginTest {
 
         loginPage.usernameAndPswdFromEmail();
     }
+
+
 }

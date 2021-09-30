@@ -23,9 +23,9 @@ public class LoginPage {
     private By passWord = By.xpath("//input[@name='password']");
     private By loginBtn = By.xpath("//button[@class='uk-button uk-button-primary']");
     private By dashboardBtn = By.xpath("//i[@class='icon icon-dashboard icon-lg']");
-    private By loginError   = By.xpath("//p[@class='error']");
+    private By loginError = By.xpath("//p[@class='error']");
     private By accessDenied = By.xpath("//span[text()='Access Denied']");
-    private By dismissBtn   = By.xpath("//button[text()='Dismiss']");
+    private By dismissBtn = By.xpath("//button[text()='Dismiss']");
 
     private ConfigReader configReader;
     Properties prop;
@@ -34,14 +34,13 @@ public class LoginPage {
         this.driver = driver;
     }
 
-    public String getURL(String env){
+    public String getURL(String env) {
         configReader = new ConfigReader();
         prop = configReader.init_prop();
 
-        if(prop.getProperty("runOn").equalsIgnoreCase("jenkins")){
+        if (prop.getProperty("runOn").equalsIgnoreCase("jenkins")) {
             return (System.getProperty("environment"));
-        }
-        else if(prop.getProperty("runOn").equalsIgnoreCase("local")) {
+        } else if (prop.getProperty("runOn").equalsIgnoreCase("local")) {
             if (env.equalsIgnoreCase("training")) {
                 return (prop.getProperty("trainingURL"));
             } else if (env.equalsIgnoreCase("Staging")) {
@@ -56,15 +55,15 @@ public class LoginPage {
         }
         return "Enter proper Environment";
     }
+
     public void enterUserName(String userGroup) {
 
         configReader = new ConfigReader();
         prop = configReader.init_prop();
 
-        if(prop.getProperty("runOn").equalsIgnoreCase("jenkins")){
+        if (prop.getProperty("runOn").equalsIgnoreCase("jenkins")) {
             driver.findElement(emailId).sendKeys(System.getProperty("username"));
-        }
-        else if(prop.getProperty("runOn").equalsIgnoreCase("local")) {
+        } else if (prop.getProperty("runOn").equalsIgnoreCase("local")) {
             if (userGroup.equalsIgnoreCase("user1")) {
                 driver.findElement(emailId).sendKeys(prop.getProperty("username1"));
             } else if (userGroup.equalsIgnoreCase("Power")) {
@@ -86,10 +85,9 @@ public class LoginPage {
         configReader = new ConfigReader();
         prop = configReader.init_prop();
 
-        if(prop.getProperty("runOn").equalsIgnoreCase("jenkins")){
+        if (prop.getProperty("runOn").equalsIgnoreCase("jenkins")) {
             driver.findElement(emailId).sendKeys(System.getProperty("password"));
-        }
-        else if(prop.getProperty("runOn").equalsIgnoreCase("local")) {
+        } else if (prop.getProperty("runOn").equalsIgnoreCase("local")) {
             if (userGroup.equalsIgnoreCase("user1")) {
                 driver.findElement(passWord).sendKeys(prop.getProperty("user1Pswd"));
             } else if (userGroup.equalsIgnoreCase("Power")) {
@@ -108,17 +106,16 @@ public class LoginPage {
 
     public void usernameAndPswdFromEmail() throws IOException, InvalidFormatException {
 
-        int rowNumber=1;
+        int rowNumber = 1;
         ExcelReader reader = new ExcelReader();
-        List<Map<String,String>> testData =
+        List<Map<String, String>> testData =
                 reader.getData("./src/test/java/config/testdata.xlsx", "users");
 
         String user = testData.get(rowNumber).get("Username");
         String password = testData.get(rowNumber).get("Password");
 
-
-        System.out.println("username is "+user);
-        System.out.println("password is "+password);
+        System.out.println("username is " + user);
+        System.out.println("password is " + password);
 
         driver.findElement(emailId).sendKeys(user);
         driver.findElement(passWord).sendKeys(password);
@@ -129,8 +126,7 @@ public class LoginPage {
     public void clickOnLogin() throws InterruptedException {
 
         driver.findElement(loginBtn).click();
-        Thread.sleep(5000);
-        if(driver.findElements(dismissBtn).size()>0){
+        if (driver.findElements(dismissBtn).size() > 0) {
             driver.findElement(dismissBtn).click();
         }
     }
@@ -147,7 +143,7 @@ public class LoginPage {
         Assert.assertTrue(verifyText.equalsIgnoreCase("Failure"));
     }
 
-    public boolean verifyloginerror(){
+    public boolean verifyloginerror() {
 
         boolean flag = driver.findElement(loginError).isDisplayed();
         return flag;
@@ -168,10 +164,9 @@ public class LoginPage {
     }
 
 
+    public void switchtab() {
 
-    public void switchtab(){
-
-        ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+        ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs2.get(1));
 
     }

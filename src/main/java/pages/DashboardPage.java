@@ -10,10 +10,14 @@ public class DashboardPage {
     private By addNewBtn              = By.xpath("//span[text()='Add New']");
     private By addNewNotebook         = By.xpath("//a[@id='new-journal']");
     private By addNewExp              = By.xpath("//a[@id='new-experiment']");
-    private By expIcon              = By.xpath("//a[@id='experiments']");
-    private By profile              = By.xpath("//button[@id='profile-dropdown']");
-    private By signOut              = By.xpath("//a[@id='logout']");
-    private By sytmConfig           = By.xpath("//a[text()='System Configuration']");
+    private By expIcon                = By.xpath("//a[@id='experiments']");
+    private By profile                = By.xpath("//button[@id='profile-dropdown']");
+    private By signOut                = By.xpath("//a[@id='logout']");
+    private By sytmConfig             = By.xpath("//a[text()='System Configuration']");
+
+    public DashboardPage(WebDriver driver) {
+        this.driver = driver;
+    }
 
     public void addNewExperiment(){
 
