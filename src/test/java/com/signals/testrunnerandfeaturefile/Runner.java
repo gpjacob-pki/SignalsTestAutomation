@@ -16,7 +16,7 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
  features = {"src/test/java/com/signals/feature"}
  ,glue={"com/signals/stepDefeniiton"},
-		 tags = "@sign",
+		 tags = "@login",
  plugin={"json:target/json-report/cucumber.json","com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
  //plugin = { "json:target/json-report/cucumber.json"}"pretty", "html:test-output",
  ,monochrome = true
